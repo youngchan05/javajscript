@@ -1,0 +1,30 @@
+<html lang="ko">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<style>
+		</style>
+	</head>
+	<body>
+		<label for="weather">Select the weather type today:</label>
+		<select id="weather">
+			<option value="">-- Make a choice --</option>
+			<option value="sunny">Sunny</option>
+			<option value="rainy">Rainy</option>
+			<option value="snowing">Snowing</option>
+			<option value="overcaset">Overcaset</option>
+		</select>
+		<p class="desc"></p>
+	</body>
+	<script>
+		var select = document.querySelector('select');
+		var txt = document.querySelector('.desc');
+
+		select.addEventListener('change',test);
+		function test(){
+			console.log("change");
+		}
+	</script>
+</html>
