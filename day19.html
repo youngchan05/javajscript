@@ -1,0 +1,56 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+		button.active { background-color:red}
+		.cont { display:none;}
+		.cont.active { display:block;}
+	</style>
+</head>
+<body>
+	<p id="demo1"></p>
+	<p id="demo2"></p>
+	<p id="demo3"></p>
+	<p id="demo4"></p>
+	<p id="demo5"></p>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		function myfunction(){
+			var txt = "안녕하세요";
+			document.getElementById('demo1').innerHTML = typeof txt + " " + txt;
+
+		}
+		document.getElementById('demo2').innerHTML = typeof txt;
+		myfunction();
+
+		var person = {
+			firstName: "youngchan",
+			lastName :  "kim",
+			id : 2222,
+			fullName : function(){
+				return this.firstName + "" + this.lastName;
+			}
+		}
+		person.fullName();
+		document.getElementById('demo3').innerHTML = person.fullName();
+		function Family (first,last,age){
+			this.fristName = first,
+			this.lastName = last,
+			this.age = age,
+			this.name = function(){
+				return this.fristName +"" + this.lastName;
+			}
+		}
+		var myFather = new Family("kim","jiksu",59);
+		var myMother = new Family("shin","chunko",55);
+		document.getElementById('demo5').innerHTML = myFather.name();
+
+
+	</script>
+</body>
+
+</html>

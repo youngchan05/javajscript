@@ -1,0 +1,40 @@
+<html lang="ko">
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<style>
+		</style>
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script>
+		var $body = document.body,
+			$title = document.createElement('p'),
+			$form = document.createElement('form'),
+			$input = document.createElement('input'),
+			$button = document.createElement('button');
+
+		$body.append($title);
+		$body.append($form);
+		$form.append($input);
+		$form.append($button);
+		$title.textContent = "김영찬";
+		$button.textContent = '버튼';
+
+		$button.addEventListener('click',function(e){
+			e.preventDefault();
+			if($title.textContent[$title.textContent.length- 1]  === $input.value[0]){
+				$title.textContent = $input.value;
+				$input.value = '';
+				focus();
+			}else{
+				alert('끝말잇입니다!')
+				$input.value = '';
+				focus();
+			}
+		})
+		</script>
+	</body>
+</html>

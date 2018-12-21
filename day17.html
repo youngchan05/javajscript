@@ -1,0 +1,36 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+		button.active { background-color:red}
+		.cont { display:none;}
+		.cont.active { display:block;}
+	</style>
+</head>
+<body>
+	<button type="button" class="active btn1">버튼1</button>
+	<button type="button" class="btn2">버튼2</button>
+	<button type="button" class="btn3">버튼3</button>
+	<button type="button" class="btn4">버튼4</button>
+	<div class="cont active">콘텐츠1</div>
+	<div class="cont">콘텐츠2</div>
+	<div class="cont">콘텐츠3</div>
+	<div class="cont">콘텐츠4</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		for(var i = 0; i < 5; i+=1){
+			(function(j){
+				$('.btn' + j).on('click',function(){
+					var index = j - 1;
+					$('.cont').removeClass('active').eq(index).addClass('active')
+				})
+			})(i)
+		}
+	</script>
+</body>
+
+</html>

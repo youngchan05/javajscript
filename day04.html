@@ -8,6 +8,14 @@
 		</style>
 	</head>
 	<body>
-		master branch
+		<p class="demo" id="demo"></p>
+		<p class="demo" id="demo2"></p>
+		<button type="button" onclick="Myfunction()"></button>
+		<script>
+			document.getElementById("demo").innerHTML ="My fist java script";
+			function Myfunction(){
+				document.getElementById("demo2").innerHTML = "paragraph changed";
+			}
+		</script>
 	</body>
 </html>

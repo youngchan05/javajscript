@@ -1,0 +1,76 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+		button.active { background-color:red}
+		.cont { display:none;}
+		.cont.active { display:block;}
+	</style>
+</head>
+<body>
+	<button type="button" onClick ="document.getElementById('now-time').innerHTML = Date()">click me</button>
+	<p id="now-time"></p>
+	<button type="button" onClick="document.getElementById('chagImg').src='images/pic_bulbon.gif'">ChangeOn</button>
+	<img src="images/pic_bulboff.gif" id="chagImg">
+	<button type="button" onClick="document.getElementById('chagImg').src='images/pic_bulboff.gif'">ChangeOff</button>
+	<p id="goodDay"></p>
+	<p id="toDay"></p>
+	<p id="carArry"></p>
+	<p id="constructor1"></p>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+	var time = new Date().getHours();
+
+		if(time < 10){
+			greeting ="GOOD MONING";
+		}else if (time > 18){
+			greeting = "GOOD DAY"
+		}else{
+			greeting = "GOOD EVENING"
+		}
+		document.getElementById("goodDay").innerHTML = greeting;
+
+		var day;
+		switch(new Date().getDay()){
+			case 0:
+			day ="Sunday"
+			break;
+			case 1:
+			day ="Monday"
+			break;
+			case 2:
+			day ="Tuseday"
+			break;
+			case 3:
+			day ="wednesday"
+			break;
+			case 4:
+			day = "Thursday"
+			break;
+			case 5:
+			day ="Friday"
+			break;
+			case 6:
+			day ="Saturday"
+
+		}
+		document.getElementById("toDay").innerHTML = "Today is " + day;
+		var cars = ["BMW","Volvo","Saab","Ford","Fiat","Audi"];
+		var carsText ="";
+		for(var i = 0; i < cars.length; i++){
+			carsText += cars[i] +"<br>"
+		}
+		document.getElementById('carArry').innerHTML = carsText;
+		var constructorDate = new Date();
+		document.getElementById('constructor1').innerHTML = isDate(constructorDate);
+		function isDate(constructorDate){
+			return constructorDate.constructor.toString().indexOf("Date") > -1;
+		}
+	</script>
+</body>
+
+</html>
