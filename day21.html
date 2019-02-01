@@ -10,7 +10,9 @@
 </head>
 <body>
 	<p id="demo1"></p>
+	<button id="demo1_btn" onClick="myFunction1()">click me</button>
 	<p id="demo2"></p>
+	<button id="demo2_btn" onClick="myFunction2()">click me</button>
 	<p id="demo3"></p>
 	<p id="demo4"></p>
 	<p id="demo5"></p>
@@ -32,104 +34,32 @@
 	<p id="demo21"></p>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
-		function Myfunction1(a , b){
-			return a * b;
+		function myFunction1(){
+			var a = 4;
+			document.getElementById('demo1').innerHTML = a * a;
 		}
-		var x = Myfunction1(2 , 4);
-		document.getElementById('demo1').innerHTML = x;
-		function Myfunction2(a , b ,c){
-			return arguments.length;
+		var myFunctionA = 4;
+		function myFunction2(){
+			document.getElementById('demo2').innerHTML = myFunctionA + myFunctionA;
 		}
-		document.getElementById('demo2').innerHTML = Myfunction2(4,2,3);
-		function Myfunction3(){
-			return a * b;
+		var count1 = 0;
+		function add1(){
+			count1 += 1;
 		}
-		document.getElementById('demo3').innerHTML = Myfunction3.toString()
+		add1();
+		add1();
+		add1();
+		document.getElementById('demo3').innerHTML = count1;
 
-		function Myfunction4(x , y){
-			if( y === undefined){
-				y = 4;
-			}
-			return x * y;
+		var count2 = 2;
+		function add2(){
+			var count2 = 3;
+			count2 +=1;
 		}
-		document.getElementById('demo4').innerHTML = Myfunction4(4);
-
-		function findMax(){
-			var max = 0;
-			for(var i = 0; arguments.length > i; i++){
-				if(arguments[i] > max){
-					max = arguments[i];
-				}
-			}
-			return max;
-		}
-		document.getElementById('demo5').innerHTML = findMax(10,2,20)
-
-		function sumAll(){
-			var sum = 0;
-			for(var i = 0; arguments.length > i; i++){
-				sum += arguments[i];
-			}
-			return sum;
-		}
-		document.getElementById('demo6').innerHTML = sumAll(10,2,20)
-		var windowThis = Myfunction5();
-		function Myfunction5(){
-			return this;
-		}
-		document.getElementById('demo7').innerHTML = windowThis;
-		var myObject1 = {
-			firstName :'youngchan',
-			lastName : 'kim',
-			fullName : function(){
-				return this.firstName + " " + this.lastName;
-			}
-		}
-		document.getElementById('demo8').innerHTML = myObject1.fullName();
-
-		var myObject2 = {
-			firstName : 'youngchan',
-			lastName : 'kim',
-			fullName:  function(){
-				return this;
-			}
-		}
-		document.getElementById('demo9').innerHTML = myObject2.fullName();
-
-		function Myfunction6(arg1 , arg2){
-			this.fistName = arg1;
-			this.lastName = arg2;
-		}
-		var x1 = new Myfunction6('kim' , 'chan');
-		document.getElementById('demo10').innerHTML = x1.fistName;
-
-		var myObject3 = {
-			firstName : 'kim',
-			lastName : 'youngchan',
-			fullName : function (){
-				return this.firstName + "" + this.lastName ;
-			}
-		}
-		var obx3 = myObject3.fullName();
-		document.getElementById('demo12').innerHTML = obx3
-
-		var person1 = {
-			fullName : function(){
-				return this.firstName + "" + this.lastName;
-			}
-		}
-		var person1Op1 = {
-			firstName : "jun",
-			lastName : "hyungjun",
-		}
-		var person1Op2 = {
-			firstName : "jun",
-			lastName : "youngjun",
-		}
-		var personCall = person1.fullName.call(person1Op1);
-		document.getElementById('demo13').innerHTML = personCall
-
-
+		add2();
+		add2();
+		add2();
+		document.getElementById('demo4').innerHTML =count2;
 
 	</script>
 </body>
