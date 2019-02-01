@@ -1,0 +1,43 @@
+<html>
+    <head>
+    <title>TAB</title>
+    </head>
+    <style>
+    ul, li { padding:0; margin:0; list-style:none;}
+    .tabs { background-color:#00bcd4 }
+    .tabs::after { display:block; clear:both; content:"";}
+    .tabs li { float:left; width:100px; text-align:center;}
+    .tabs li a { display:block; font-size:18px; line-height:44px; color:#fff; font-weight:bold; text-decoration:none;}
+    .tab_view  { display:none;}
+    .tab_view.active { display:block;}
+    </style>
+    <body>
+        <ul class="tabs">
+            <li class="active"><a href="#">ITEM1</a></li>
+            <li><a href="#">ITEM2</a></li>
+            <li><a href="#">ITEM3</a></li>
+        </ul>
+        <div class="tab_view active">tab1</div>
+        <div class="tab_view">tab2</div>
+        <div class="tab_view">tab3</div>
+        <script>
+            var  $tab = document.querySelectorAll('.tabs li'),
+                 $tabView = document.querySelectorAll('.tab_view');
+                 for( var i = 0; i < $tab.length; i++){
+                    (function(index){
+                        $tab[index].addEventListener('click',function(){
+                            reset();
+                             this.classList.add('active')
+                             $tabView[index].classList.add('active')
+                        })
+                    })(i)
+                 }
+                 function reset(){
+                     for( var i = 0; i < $tab.length; i++){
+                         $tab[i].classList.remove('active')
+                         $tabView[i].classList.remove('active')
+                     }
+                 }
+        </script>
+    </body>
+</html>
