@@ -1,0 +1,72 @@
+<html>
+    <head>
+    <title></title>
+    </head>
+    <style>
+        ol,ul,li { padding:0; margin:0;list-style:none;}
+        .slider_wrap { height:60px; overflow:hidden;}
+        .slider_wrap ul { }
+        .slider_wrap ul li { line-height:60px; font-size:16px;}
+    </style>
+    <body>
+        <div class="slider_wrap">
+            <ul>
+                <li>text1</li>
+                <li>text2</li>
+                <li>text3</li>
+                <li>text4</li>
+            </ul>
+        </div>
+        <button type="button" class="btn up">위로</button>
+        <button type="button" class="btn down">아래로</button>
+        <script>
+            var sliderMove = document.querySelector('.slider_wrap ul'),
+                slideItem = document.querySelectorAll('.slider_wrap ul li'),
+                btns = document.querySelectorAll('.btn'),
+                size = slideItem[0].clientHeight,
+                counter = 1;
+                for(var btn of btns){
+                    btn.addEventListener('click',function() {
+                        var _this = this, direct = _this.classList.contains('up') ? 1 : -1;
+                        slideItem = document.querySelectorAll('.slider_wrap ul li');
+                        counter = direct;
+                        console.log(counter)
+                        clickFn();
+                    })
+                }
+                function clickFn(el){
+                 sliderMove.style.transition="transform .5s ease-in-out";
+                 if(counter < 1){
+                     sliderMove.style.transform = "translateY(" + size * counter + "px)";
+                 }else{
+                     sliderMove.style.transition = 'none';
+                     sliderMove.style.transform = "translateY(" + -size * counter + "px)";
+                     setTimeout(function(){
+                        sliderMove.style.transition="transform .5s ease-in-out";
+                        sliderMove.style.transform = "translateY(0px)";
+                     },1)
+                 }
+                 sliderMove.addEventListener('transitionend',function(){
+                     if(counter < 1){
+                         this.removeAttribute("style");
+                         this.append(slideItem.item(0));
+                     }else{
+                         this.prepend(slideItem.item(slideItem.length-1));
+                     }
+                 })
+                }
+                /*slideUp[0].addEventListener('click',function(){
+                    counter -= 1;
+                    sliderMove[0].style.transition="transform .5s ease-in-out"
+                    sliderMove[0].style.transform = "translateY(" + -size * counter + "px)";
+
+                })
+                slideDown[0].addEventListener('click',function(){
+                    counter += 1;
+                    sliderMove[0].style.transition="transform .5s ease-in-out"
+                    sliderMove[0].style.transform = "translateY(" + -size * counter + "px)";
+                })*/
+
+        </script>
+    </body>
+</html>

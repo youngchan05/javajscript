@@ -1,0 +1,23 @@
+<html>
+    <head>
+    <title>lotto</title>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div id="num"></div>
+        <script>
+            var candidate = Array(45).fill().map(function(type, index){
+                return index + 1;
+            })
+            var shuffle = [];
+            while (candidate.length > 0){
+                var num = candidate.splice(Math.floor(Math.random() * candidate.length) ,1)[0]
+                shuffle.push(num);
+            }
+            var bonus = shuffle[shuffle.length -1];
+            var nums = shuffle.slice(0,6);
+        </script>
+    </body>
+</html>

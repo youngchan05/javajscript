@@ -1,0 +1,43 @@
+<html>
+    <head>
+    <title>가위바위보</title>
+    </head>
+    <style>
+
+    </style>
+    <body>
+        <div class="view">
+
+        </div>
+        <button type="button" class="btn">주먹</button>
+        <button type="button" class="btn">가위</button>
+        <button type="button" class="btn">보</button>
+        <script>
+            var item = '주먹';
+            var items = {
+                가위 : '가위',
+                주먹 : '주먹',
+                보 : '보'
+
+            }
+            var find = Object.entries(items).find(function(v){
+                v[0]
+            })
+            setInterval(function(){
+                if(item == '주먹'){
+                    item = '가위'
+                }else if(item == '가위'){
+                    item = '보'
+                }else{
+                    item = '주먹'
+                }
+                document.querySelector('.view').innerHTML = item;
+            },100)
+            document.querySelectorAll('.btn').forEach(function(btn){
+                btn.addEventListener('click',function(){
+                    console.log(this.textContent, item);
+                })
+            });
+        </script>
+    </body>
+</html>
