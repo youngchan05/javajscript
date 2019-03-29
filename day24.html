@@ -1,0 +1,53 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+	</style>
+</head>
+
+<body>
+	<input type="text" id="numVal"><button id="btn">확인</button>
+	<button id="reset" style="display:none;">다시시작</button>
+
+	<p id="info-txt"></p>
+	<script>
+		//난수를 뽑는다.
+		var random = Math.floor(Math.random() * 100) + 1,
+			inputNum = document.getElementById('numVal'),
+			btn = document.getElementById('btn'),
+			txt = document.getElementById('info-txt'),
+			count = 10;
+		btn.addEventListener('click', function () {
+			inputVal = inputNum.value;
+			if (isNaN(inputVal) == true || inputVal > 100 || inputVal == "" || inputVal == 0) {
+				alert('숫자 1 ~ 100을 입력해주세요');
+				inputNum.value = "";
+				inputNum.focus();
+				return true;
+			}
+			count--;
+			valCheck(inputVal, random, count)
+		})
+		function valCheck(inputVal, random, count) {
+			if (count == 0) {
+				txt.innerHTML = "실패";
+				btn.disabled = true;
+				return ture;
+			} 
+			if (random > inputVal) {
+				txt.innerHTML = "업 남은기회" + count;
+			} else if (random < inputVal) {
+				txt.innerHTML = "다운 남은기회" + count;
+			}else {
+				txt.innerHTML = "정답";
+				btn.disabled = true;
+			}
+		}
+	</script>
+</body>
+
+</html>

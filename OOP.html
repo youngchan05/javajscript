@@ -1,0 +1,42 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+	</style>
+</head>
+<body>
+
+	<script>
+		// function Person(){
+		// 	var tset = 'kim11111';
+		// 	this.greeting = function(){
+		// 		alert('Hi! Im' + this.test + '.');
+		// 	}
+		// }
+		// var person1 = new Person('kim1');
+		// var person2 = new Person('kim2');
+
+		function Person(first,last,age,gender,interests){
+			this.name={
+				'first' : first,
+				'last' : last
+			};
+			this.age = age ;
+			this.gender = gender ;
+			this.interests = interests;
+			this.bio = function(){
+				alert(this.name.first + ''+  this.name.last + 'is'+  this.age+'years old .he likes' +this.interests[0] + 'and' + this.interests[1] +'.');
+			},
+			this.greeting = function(){
+				alert('Hi! Im' + this.name.first + '.');
+			}
+		}
+		var person3 = new Person('Bob', 'Smith', 28, 'male', ['music', 'skiing']);
+	</script>
+</body>
+
+</html>

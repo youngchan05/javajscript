@@ -1,0 +1,70 @@
+<html>
+    <head>
+    <title>test</title>
+    </head>
+    <style>
+        .slide { position:relative; width:500px ; height:300px; margin:0 auto;}
+        .slide  ul { position:relative;}
+        .slide  ul  li { position:absolute; left:0; top:0; width:100%; height:300px; background-color:#222; font-size:50px; color:#fff; opacity:
+        0; transition:all  .9s;}
+        .slide  ul  li.active { opacity: 1; z-index: 1;}
+        .slide .pager-item {position:absolute; left:0; bottom:20px; width:100%; z-index:30; text-align:center;}
+        .slide .pager-item a { display:inline-block; width:12px; height:12px; background-color:#fff;}
+        .slide .pager-item a + a { margin-left:4px;}
+        .slide .pager-item a.active { background-color:red;}
+    </style>
+    <body>
+        <div class="slide">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+            <div class="pager-item"></div>
+        </div>
+        <script>
+                function slide(){
+
+                    var $selector = document.querySelectorAll('.slide ul li'),
+                    $pager = document.querySelector('.pager-item'),
+                    $current = 0;
+
+                    if(!$selector) return;
+                    for(var i = 0; i < $selector.length; i++){
+                        $pager.append(document.createElement('a'));
+                    }
+                    var $paging = document.querySelectorAll('.pager-item a');
+                    var auto = setInterval(function(){
+                        start($current,$selector ,$paging);
+                    },1300)
+
+                    for(var k = 0; k < $paging.length; k ++ ){
+                        (function($idx){
+                            $paging[k].addEventListener('click',function(e){
+                                for(var j = 0; j < $selector.length; j++){
+                                    $selector[j].classList.remove('active');
+                                }
+                                $selector[$idx].classList.add('active');
+                                clearInterval(auto);
+                                auto = setInterval(start,1300);
+                                $current = $idx + 1;
+                            })
+                        }(k))
+                    }
+                }
+                slide();
+                 function start($current ,$selector,$paging){
+                    for( var i = 0; i < $selector.length; i++){
+                        $selector[i].classList.remove('active');
+                        $paging[i].classList.remove('active');
+                    }
+                    if($current > $selector.length){
+                        $current = 1;
+                    }
+                    $selector[$current - 1].classList.add('active');
+                    $paging[$current - 1].classList.add('active');
+                }
+        </script>
+    </body>
+</html>

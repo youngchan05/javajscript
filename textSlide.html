@@ -5,7 +5,7 @@
     <style>
         ol,ul,li { padding:0; margin:0;list-style:none;}
         .slider_wrap { height:60px; overflow:hidden;}
-        .slider_wrap ul { }
+        .slider_wrap ul {}
         .slider_wrap ul li { line-height:60px; font-size:16px;}
     </style>
     <body>
@@ -20,53 +20,41 @@
         <button type="button" class="btn up">위로</button>
         <button type="button" class="btn down">아래로</button>
         <script>
-            var sliderMove = document.querySelector('.slider_wrap ul'),
-                slideItem = document.querySelectorAll('.slider_wrap ul li'),
-                btns = document.querySelectorAll('.btn'),
-                size = slideItem[0].clientHeight,
-                counter = 1;
-                for(var btn of btns){
-                    btn.addEventListener('click',function() {
-                        var _this = this, direct = _this.classList.contains('up') ? 1 : -1;
-                        slideItem = document.querySelectorAll('.slider_wrap ul li');
-                        counter = direct;
-                        console.log(counter)
-                        clickFn();
+            var slideMove = document.querySelector('.slider_wrap ul'),
+                sliderItem = document.querySelectorAll('.slider_wrap ul li'),
+                sliderBtn = document.querySelectorAll('button'),
+                sliderSize = sliderItem[0].clientHeight;
+                counter = 0;
+                for(btns of sliderBtn){
+                    btns.addEventListener('click',function(){
+                        slideMove.style.transition = "transform .5s";
+                        if(btns == this){
+                            counter++;
+                            slideMove.style.transition = "transform .5s";
+                            slideMove.style.transform = "translateY(" +counter * -sliderSize+  "px)"
+                            test()
+                        }else{
+                            counter--;
+                            console.log(counter);
+                            slideMove.style.transition = "transform .5s";
+                            slideMove.style.transform = "translateY(" +counter * sliderSize+  "px)"
+                            test()
+                        }
                     })
                 }
-                function clickFn(el){
-                 sliderMove.style.transition="transform .5s ease-in-out";
-                 if(counter < 1){
-                     sliderMove.style.transform = "translateY(" + size * counter + "px)";
-                 }else{
-                     sliderMove.style.transition = 'none';
-                     sliderMove.style.transform = "translateY(" + -size * counter + "px)";
-                     setTimeout(function(){
-                        sliderMove.style.transition="transform .5s ease-in-out";
-                        sliderMove.style.transform = "translateY(0px)";
-                     },1)
-                 }
-                 sliderMove.addEventListener('transitionend',function(){
-                     if(counter < 1){
-                         this.removeAttribute("style");
-                         this.append(slideItem.item(0));
-                     }else{
-                         this.prepend(slideItem.item(slideItem.length-1));
-                     }
-                 })
+                function test(){
+                    slideMove.addEventListener('transitionend',function(){
+                        if(counter > 3){
+                            slideMove.style.transition = "none";
+                            slideMove.style.transform = "translateY(0px)"
+                            counter = 0;
+                        }else if(counter < -3){
+                            slideMove.style.transition = "none";
+                            slideMove.style.transform = "translateY(" +counter * -sliderSize+  "px)"
+                            counter = 4;
+                        }
+                    },1)
                 }
-                /*slideUp[0].addEventListener('click',function(){
-                    counter -= 1;
-                    sliderMove[0].style.transition="transform .5s ease-in-out"
-                    sliderMove[0].style.transform = "translateY(" + -size * counter + "px)";
-
-                })
-                slideDown[0].addEventListener('click',function(){
-                    counter += 1;
-                    sliderMove[0].style.transition="transform .5s ease-in-out"
-                    sliderMove[0].style.transform = "translateY(" + -size * counter + "px)";
-                })*/
-
         </script>
     </body>
 </html>

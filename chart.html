@@ -1,0 +1,79 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+	table { border-collapse:collapse; }
+	table tr td { width:30px; height:30px; border:1px solid #333; text-align:center;}
+	</style>
+</head>
+
+<body>
+	<input id="hor" type="number" placeholder="가로" value="10">
+	<input id="ver" type="number" placeholder="세로" value="10">
+	<input id="mine" type="number" placeholder="지뢰" value="20">
+	<button id="exec" type="button">실행</button>
+	<table id="table">
+		<thead>
+			<tr>
+				<th><span id="timer">0</span>초</th>
+			</tr>
+
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+	<script>
+		document.querySelector('#exec').addEventListener('click',function(){
+			var hor = parseInt(document.querySelector('#hor').value);
+			var ver = parseInt(document.querySelector('#ver').value);
+			var mine = parseInt(document.querySelector('#mine').value);
+			var dataset = [];
+			var tbody = document.querySelector('#table tbody');
+			console.log(tbody.children)
+			//랜덤 지뢰 뽑기
+			var 후보군 = Array(hor * ver)
+			.fill()
+			.map(function(item , 인덱스){
+					return 인덱스;
+				})
+				var 셔플 = [];
+				while(후보군.length > 80){
+					var 이동값 = 후보군.splice(Math.floor(Math.random() * 후보군.length),1)[0];
+					셔플.push(이동값);
+				}
+				console.log(셔플);
+				//테이블 동적으로 만들기
+			for(var i = 0; i < ver; i += 1){
+				var arr = [];
+				var tr = document.createElement('tr');
+				ar 부모tr = e.currentTargrt()
+				dataset.push(arr);
+				for( var j = 0; j < hor; j += 1){
+					arr.push(1);
+					var td = document.createElement('td');
+					td.addEventListener('contextmenu',function(e){
+						e.preventDefault();
+					})
+					tr.appendChild(td);
+				}
+				tbody.appendChild(tr);
+			}
+			//랜덤 지뢰 심기
+			for( var k = 0 ; k < 셔플.length; k++){
+				var 세로 = Math.floor(셔플[k] / 10)  ;
+				var 가로 = 셔플[k] % 10;
+				console.log(세로,가로)
+				tbody.children[세로].children[가로].textContent ="X";
+				dataset[가로][세로] = "X";
+			}
+			console.log(dataset)
+		})
+	</script>
+</body>
+
+</html>
