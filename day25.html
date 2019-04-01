@@ -1,0 +1,75 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="up-down1">
+		<input type="text" class="numVal"><button class="btn">확인</button>
+		<button id="reset" style="display:none;">다시시작</button>
+		<p class="info-txt"></p>
+	</div>
+
+	<div class="up-down2">
+		<input type="text" class="numVal"><button class="btn">확인</button>
+		<button id="reset" style="display:none;">다시시작</button>
+		<p class="info-txt"></p>
+	</div>
+
+	<script>
+		function UpDown(el) {
+			this.elem = el;
+			this.count = 0;
+			this.round = 10;
+			this.txt = this.elem.querySelector('.info-txt');
+			this.checkVal(this.elem);
+			console.log(this.txt)
+		}
+		UpDown.prototype.checkVal = function(wrap) {
+			this.random = Math.floor(Math.random() * 100) + 1;
+			this.btn = this.elem.querySelector('.btn');
+			console.log(this.random)
+			var that = this;
+			this.btn.addEventListener('click', function() {
+				that.val = wrap.querySelector('.numVal').value;
+				if (isNaN(that.val) == true || that.val > 100 || that.val == "" || that.val == 0) {
+					alert("숫자 1 ~ 100 까지입력해주세요.");
+					wrap.querySelector('.numVal').value = null;
+					wrap.querySelector('.numVal').focus();
+					return true;
+				}
+				that.count++;
+				check();
+			})
+			function check() {
+				var count = that.round - that.count
+				if (that.count == that.round) {
+					that.txt.innerHTML = "실패";
+					that.btn.disabled = true;
+					return true;
+				}
+				if (that.random > that.val) {
+					that.txt.innerHTML = "업 남은기회는" + count + "회";
+				} else if (that.random < that.val) {
+					that.txt.innerHTML = "다운 남은기회는" + count + "회";
+				} else {
+					that.txt.innerHTML = "정답";
+					that.btn.disabled = true;
+				}
+			}
+		}
+		var target = document.querySelectorAll('[class*="up-down"]'), arr = []
+		for(var i=0; i<target.length;i++){
+			arr[i] = new UpDown(target[i])
+		}
+		console.log(arr)
+	</script>
+</body>
+
+</html>
