@@ -1,0 +1,35 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style>
+	</style>
+</head>
+
+<body>
+	<p class="text"></p>
+	<script>
+		var arr = [];
+		for (var i = 0; i < 6; i++) {
+			arr[i] = Math.floor(Math.random() * 45) + 1;
+			for (var j = 0; j < i; j++) {
+				if (arr[i] == arr[j]) {
+					i = i - 1;
+					break;
+				}
+			}
+		}
+		arr.sort(function(a, b){
+			return a - b
+		});
+		arr = arr.join(',');
+		var lottoNum = document.querySelector('.text');
+		lottoNum.innerHTML  = arr;
+		console.log(lottoNum);
+	</script>
+</body>
+
+</html>
