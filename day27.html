@@ -6,13 +6,68 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<style>
+		.board { width:100%; max-width:1200px; margin:0 auto; padding:50px;}
+		.board::after { display:block; clear:both; content:"";}
+		.board .card { float:left; width:calc(25% - 7.5px); height:300px; border:1px solid #333; box-sizing:border-box;}
+		.board .card.active { background-color:red;}
 	</style>
 </head>
 
 <body>
-	ㅇㄴㅁㅇㅁㄴㅇasd
+	<div class="board">
+		
+	</div>
 	<script>
-
+		function Card(){
+			this.count = 4;
+			this.arr = [];
+			this.temp = [];
+			this.card = null;
+			this.board = document.querySelector('.board');
+			this.madeNum = function(){
+				for (var i = 0;  i < 2; i++){
+					for(var j = 0; j < this.count; j++){
+						this.arr.push(j);
+						var card = document.createElement('div');
+						this.board.appendChild(card);
+					}
+				}
+			}
+			this.shuffle = function(){
+				var x = null;
+				this.card = document.querySelectorAll('.board > div');
+				for(var j = this.arr.length; j > 0; j--){
+					var random = Math.floor(Math.random() * j);
+					x = this.arr.splice(random , 1);
+					this.card[j - 1].classList.add('card' ,'card' + x)
+					this.card[j - 1].innerHTML="카드" + x;
+				}
+			}
+			this.cardClick = function (){
+				var that = this;
+				var targer = null;
+				for(var i = 0; i < this.card.length; i++){
+					(function(i){
+						that.card[i].addEventListener('click', function(e){
+							this.style.backgroundColor="red";
+							test(this);
+							this.classList.add('active');
+						})
+					})(i)
+				}
+				function test(){
+					console.log(that.card.length);
+					for(var i = 0; i < that.card.length; i++){
+						if(that.card[i].classList.contains('active')){
+	
+					}
+				}
+			}
+			this.madeNum();
+			this.shuffle();
+			this.cardClick();
+		}
+		var card = new Card();
 	</script>
 </body>
 
