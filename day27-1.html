@@ -1,0 +1,94 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="css/card.css" rel="stylesheet">
+	<style>
+	</style>
+</head>
+
+<body>
+	<div class="board">
+
+	</div>
+	<script>
+		function Card() {
+			this.count = 4;
+			this.arr = [];
+			this.temp = [];
+			this.card = null;
+			this.board = document.querySelector('.board');
+			this.madeNum = function () {
+				for (var i = 0; i < this.count; i++) {
+					for (var j = 0; j < this.count; j++) {
+						this.arr.push(j);
+						var card = document.createElement('div'),
+							img = document.createElement('img');
+						card.style.width = 100 / this.count + "%";
+						card.appendChild(img);
+						this.board.appendChild(card);
+					}
+				}
+			}
+			this.shuffle = function () {
+				var x = null;
+				var y = [];
+				this.card = document.querySelectorAll('.board > div');
+				var img = document.querySelectorAll('img');
+				for (var j = this.arr.length; j > 0; j--) {
+					var random = Math.floor(Math.random() * j);
+					x = this.arr.splice(random, 1);
+					this.card[j - 1].classList.add('card', 'card' + x);
+					y.push(x);
+				}
+				y.reverse();
+				this.cardClick(y);
+			}
+			this.cardClick = function (y) {
+				var that = this;
+				var target = null;
+				for (var i = 0; i < this.card.length; i++) {
+					(function (i) {
+						that.card[i].addEventListener('click', function (e) {
+							var num = y[i];
+							this.classList.add('active');
+							test(this, num);
+						})
+					})(i)
+				}
+				function test(select, num) {
+					var box = document.querySelectorAll('.active').length;
+					function remove(j) {
+						setTimeout(function () {
+							that.card[j].classList.remove('active');
+						}, 700)
+					}
+					if (box == 2) {
+						if (String(target) != String(num)) {
+							for (var j = 0; j < that.card.length; j++) {
+								remove(j)
+							}
+						}else{
+							select.classList.add('open');
+							target1.classList.add('open');
+							select.classList.remove('active');
+							target1.classList.remove('active');
+						}
+					}else if(box < 2){
+						return true;
+					}
+					target = num;
+					target1 = select;
+				}
+			}
+			this.madeNum();
+			this.shuffle();
+		}
+		var card = new Card();
+	</script>
+</body>
+
+</html>
