@@ -14,30 +14,67 @@
 	<div class="board">
 
 	</div>
+	<button type="button" class="hint">뒤집기</button>
 	<script>
 		function Card() {
-			this.count = 10;
+			this.count = 6;
 			this.cardArr = [];
 			this.board = document.querySelector('.board');
 			this.card = null;
+			this.hint = document.querySelector('.hint')
 			this.shuffle = function(){
 				this.card = this.board.querySelectorAll('div');
+				var img = document.querySelectorAll('.back');
 				for(var k = this.cardArr.length; k > 0 ; k--){
 					var random = Math.floor(Math.random() * k);
 					var x = this.cardArr.splice(random , 1);
 					this.card[k - 1].after(this.card[random]);
-					this.card[k - 1].classList.add('card', 'card'+x);
 					this.card[k - 1].style.width = 100 / this.count +"%";
 				}
 					this.result(this.card);
 			}
 			this.result = function(cards){
+				var count = 0, target = null;
 				for(var y = 0; y < cards.length; y++){
 					this.card[y].addEventListener('click',function(){
-						this.classList.add('active');
+						if(count <= 1){
+							count++;
+							this.classList.add('active');
+							cardCheck(this , target);
+							target = this;
+						}else{
+							count = 0;
+						}
 					})
 				}
-
+				function cardCheck(that ,target){
+					if(count == 2){
+						if(that.className == target.className){
+							console.log("맞음")
+						}else{
+							console.log("다름")
+							setTimeout(function(){
+								that.classList.remove('active')
+								target.classList.remove('active')
+							},1000)
+						}
+					}
+					console.log(count);
+				}
+			}
+			this.cardHint = function(){
+				var that = this;
+				this.hint.addEventListener('click',function(){
+					for(var i = 0; i < that.card.length; i++){
+						that.card[i].classList.add('active');
+						back(i);
+					}
+				})
+				var back = function(i){
+					setTimeout(function(){
+						that.card[i].classList.remove('active');
+					},2500)
+				}
 			}
 			Card.prototype.product = function() {
 				for (var i = 0; i < 2; i++) {
@@ -54,12 +91,14 @@
 						linkAdd.appendChild(backAdd);
 						cardAdd.appendChild(linkAdd);
 						this.board.appendChild(cardAdd);
+						cardAdd.classList.add('card' ,'card' + j);
 						this.cardArr.push(j);
 					}
 				}
 			}
 			this.product();
 			this.shuffle();
+			this.cardHint();
 		}
 		var card = new Card();
 	</script>

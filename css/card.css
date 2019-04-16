@@ -1,51 +1,59 @@
 .board {
-		position: relative;
-		width: 1200px;
-		margin: 0 auto;
-		padding: 50px;
+  position: relative;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
 }
 
 .board::after {
-		display: block;
-		clear: both;
-		content: "";
+  display: block;
+  clear: both;
+  content: "";
 }
 
 .board .card {
-		position: relative;
-		float: left;
-		box-sizing: border-box;
-		transform-style: preserve-3d;
-		transform-origin: center right;
-		transition: transform 1s;
+  position: relative;
+  float: left;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform-origin: center right;
+          transform-origin: center right;
+  -webkit-transition: -webkit-transform 1s;
+  transition: -webkit-transform 1s;
+  transition: transform 1s;
+  transition: transform 1s, -webkit-transform 1s;
 }
 
 .board .card.active {
-		transform: translateX(-100%) rotateY(-180deg);
+  -webkit-transform: translateX(-100%) rotateY(-180deg);
+          transform: translateX(-100%) rotateY(-180deg);
 }
 
 .board .card.active a {
-		margin: 10px 10px 0 0;
+  margin: 10px 10px 0 0;
 }
 
 .board .card a {
-		position: relative;
-		padding-top: 100%;
-		display: block;
-		margin: 10px 0 0 10px;
+  position: relative;
+  padding-top: 100%;
+  display: block;
+  margin: 10px 0 0 10px;
 }
 
 .board .card img {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		backface-visibility: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .board .card img.back {
-		transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
-
 /*# sourceMappingURL=card.css.map */
