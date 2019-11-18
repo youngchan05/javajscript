@@ -1,0 +1,29 @@
+<html lang="ko">
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="css/card.css" rel="stylesheet">
+	<style>
+		* { padding:0; margin:0;}
+		canvas { background-color:#eee; display:block; margin:0 auto;}
+	</style>
+	<canvas id="myCanvas" style="width:400px; height:320px;"></canvas>
+</head>
+
+<body>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+
+		ctx.beginPath();
+		ctx.rect(160, 1, 100, 40);
+		ctx.strokeStyle ="rgba(0,0,255,0.5)";
+		ctx.stroke();
+		ctx.closePath();
+	</script>
+</body>
+
+</html>

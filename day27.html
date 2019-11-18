@@ -22,76 +22,83 @@
 			this.board = document.querySelector('.board');
 			this.card = null;
 			this.hint = document.querySelector('.hint')
-			this.shuffle = function(){
+			this.shuffle = function () {
 				this.card = this.board.querySelectorAll('div');
 				var img = document.querySelectorAll('.back');
-				for(var k = this.cardArr.length; k > 0 ; k--){
+				for (var k = this.cardArr.length; k > 0; k--) {
 					var random = Math.floor(Math.random() * k);
-					var x = this.cardArr.splice(random , 1);
+					var x = this.cardArr.splice(random, 1);
 					this.card[k - 1].after(this.card[random]);
-					this.card[k - 1].style.width = 100 / this.count +"%";
+					this.card[k - 1].style.width = 100 / this.count + "%";
 				}
-					this.result(this.card);
+				this.result(this.card);
 			}
-			this.result = function(cards){
-				var count = 0, target = null;
-				for(var y = 0; y < cards.length; y++){
-					this.card[y].addEventListener('click',function(){
-						if(count <= 1){
-							count++;
-							this.classList.add('active');
-							cardCheck(this , target);
-							target = this;
-						}else{
-							count = 0;
-						}
+			this.result = function (cards) {
+				var count = 0,
+					round = 0,
+					target = null;
+				for (var y = 0; y < cards.length; y++) {
+					this.card[y].addEventListener('click', function () {
+						count++;
+						this.classList.add('active');
+						cardCheck(this, target);
+						target = this;
 					})
 				}
-				function cardCheck(that ,target){
-					if(count == 2){
-						if(that.className == target.className){
-							console.log("맞음")
-						}else{
-							console.log("다름")
-							setTimeout(function(){
+
+				function cardCheck(that, target) {
+					if (count == 2) {
+						round++;
+						if (that.className == target.className) {
+							count = 0;
+						} else {
+							count = 0;
+							event.stopImmediatePropagation();
+							setTimeout(function () {
 								that.classList.remove('active')
 								target.classList.remove('active')
-							},1000)
+							}, 1000)
 						}
 					}
-					console.log(count);
+				}
+
+				function reset() {
+					alert("실패");
+					for (var y = 0; y < cards.length; y++) {
+						this.card[y].classList.remove('active');
+					}
 				}
 			}
-			this.cardHint = function(){
+			this.cardHint = function () {
 				var that = this;
-				this.hint.addEventListener('click',function(){
-					for(var i = 0; i < that.card.length; i++){
-						that.card[i].classList.add('active');
+				this.hint.addEventListener('click', function () {
+					for (var i = 0; i < that.card.length; i++) {
+						that.card[i].classList.add('hint');
 						back(i);
 					}
 				})
-				var back = function(i){
-					setTimeout(function(){
-						that.card[i].classList.remove('active');
-					},2500)
+				var back = function (i) {
+					setTimeout(function () {
+						that.card[i].classList.remove('hint');
+					}, 2500)
 				}
 			}
-			Card.prototype.product = function() {
+			Card.prototype.product = function () {
 				for (var i = 0; i < 2; i++) {
 					for (var j = 0; j < this.count; j++) {
 						var cardAdd = document.createElement('div'),
 							linkAdd = document.createElement('a'),
 							frontAdd = document.createElement('img');
-							backAdd = document.createElement('img');
-							frontAdd.classList.add('font');
-							backAdd.classList.add('back');
-							frontAdd.src="images/card.png";
-							backAdd.src="images/card" +[j]+".png"
+						backAdd = document.createElement('img');
+						frontAdd.classList.add('font');
+						backAdd.classList.add('back');
+						frontAdd.src = "images/card.png";
+						backAdd.src = "images/card" + [j] + ".png"
 						linkAdd.appendChild(frontAdd);
 						linkAdd.appendChild(backAdd);
 						cardAdd.appendChild(linkAdd);
 						this.board.appendChild(cardAdd);
-						cardAdd.classList.add('card' ,'card' + j);
+						cardAdd.classList.add('card', 'card' + j);
 						this.cardArr.push(j);
 					}
 				}

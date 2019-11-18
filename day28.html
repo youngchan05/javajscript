@@ -7,19 +7,42 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link href="css/card.css" rel="stylesheet">
 	<style>
+		.text-wrap { position:relative; width:500px; height:60px; border:1px solid #333; overflow: hidden;}
+		.text-wrap ul { position:absolute; left:0; top:0; width:100%; margin:0; padding:0; transition:all .5s;}
+		.text-wrap ul li { line-height:60px;}
 	</style>
 </head>
 
 <body>
-	<div>
+	<div class="text-wrap">
 		<ul>
-			<li></li>	
+			<li>텍스트1</li>
+			<li>텍스트2</li>
+			<li>텍스트3</li>
 		</ul>
 	</div>
-	<script>
 
+	<button type="button" class="up">업</button>
+	<script>
+		var target = document.querySelector('.text-wrap ul'),
+			slide = document.querySelectorAll('.text-wrap ul li'),
+			btn = document.querySelector('.up'),
+			count = 0;
+			function add(){
+				var cln = slide[0].cloneNode(true);
+				target.appendChild(cln);
+			}
+			add();
+			btn.addEventListener('click',function(){
+				count++;
+				if(count > slide.length){
+					target.style.top = 0;
+					count = 1;
+					target.style.top = count * -60 + "px";
+				}
+				target.style.top = count * -60 + "px";
+			})
 	</script>
 </body>
 
 </html>
- 

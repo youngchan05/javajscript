@@ -15,7 +15,7 @@
         transform-style: preserve-3d;
         transform-origin: center right;
         transition: transform 1s;
-        &.active {
+        &.active, &.hint {
             transform: translateX(-100%) rotateY(-180deg);
             a {
                 margin:10px 10px 0 0;
