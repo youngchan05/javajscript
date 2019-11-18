@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Command</title>
+    <link rel="stylesheet" href="../resources/css/reset.css">
+    <link rel="stylesheet" href="../resources/css/new_style.css">
+</head>
+
+<body>
+    <div>
+        <div class="volume-section">
+            <button type="button" class="test1">높이</button>
+            <button type="button" class="test2">멈춤</button>
+            <button type="button" class="test3">시작</button>
+            <ul class="volume">
+
+            </ul>
+            <div class="volume-btns">
+                <button type="button" class="mic active"></button>
+                <button type="button" class="edit"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function Animation() {
+            this.selector = document.querySelector('.volume'),
+                this.wt = this.selector.clientWidth,
+                this.w = 2,
+                this.m = 1,
+                this.h = 40,
+                this.n = this.wt / (this.w + this.m),
+                this.auto = null,
+                this.area = Math.floor(this.n / 9),
+                this.height = function(item) {
+                    this.h = item;
+                    this.selector.style.height = item + 'px';
+                },
+                this.addEle = function() {
+                    var h, s, b = null;
+                    for (var i = 0; i < this.n; i++) {
+                        el = document.createElement('li');
+                        el.classList.add('stick');
+                        el.style.width = this.w + 'px';
+                        el.style.marginLeft = this.m + 'px';
+                        this.selector.appendChild(el);
+                        if (this.area > i) {
+                            // hsla(215,64%,45%,1.0)
+                            this.colors(el, 206, 93, 63, i);
+                        }
+                        //  else if (test1 * 2 > i) {
+                        //     var t1 = (206 - 186) / test1;
+                        //     k += t1;
+                        //     var t2 = (93 - 73) / test1
+                        //     j += t2;
+                        //     var t3 = (67 - 63) / test1
+                        //     z += t3;
+                        //     // el.style.backgroundColor = "hsl(206,93%,63%)";
+                        //     el.style.backgroundColor = "hsl(" + (206 - k) + ", " + (93 - j) + "%," + (63 + z) + "%";
+                        //     if (i + 1 == test1 * 2) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+
+                        // } else if (test1 * 3 > i) {
+                        //     var t1 = (186 - 59) / test1;
+                        //     k += t1;
+                        //     var t2 = (100 - 73) / test1
+                        //     j += t2;
+                        //     var t3 = (67 - 66) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (186 - k) + ", " + (73 + j) + "%," + (67 - z) + "%";
+                        //     if (i + 1 == test1 * 3) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+                        // } else if (test1 * 4 > i) {
+                        //     var t1 = (59 - 21) / test1;
+                        //     k += t1;
+                        //     var t2 = (100 - 85) / test1
+                        //     j += t2;
+                        //     var t3 = (66 - 56) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (59 - k) + ", " + (100 + j) + "%," + (66 - z) + "%";
+                        //     if (i + 1 == test1 * 4) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+                        // } else if (test1 * 5 > i) {
+                        //     var t1 = (239 - 21) / test1;
+                        //     k += t1;
+                        //     var t2 = (85 - 49) / test1
+                        //     j += t2;
+                        //     var t3 = (73 - 56) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (21 + k) + ", " + (85 - j) + "%," + (56 + z) + "%";
+                        //     if (i + 1 == test1 * 5) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+                        // } else if (test1 * 6 > i) {
+                        //     var t1 = (277 - 239) / test1;
+                        //     k += t1;
+                        //     var t2 = (60 - 49) / test1
+                        //     j += t2;
+                        //     var t3 = (73 - 58) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (239 + k) + ", " + (49 - j) + "%," + (73 - z) + "%";
+                        //     if (i + 1 == test1 * 6) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+                        // } else if (test1 * 7 > i) {
+                        //     var t1 = (277 - 206) / test1;
+                        //     k += t1;
+                        //     var t2 = (93 - 60) / test1
+                        //     j += t2;
+                        //     var t3 = (63 - 58) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (277 - k) + ", " + (60 + j) + "%," + (58 + z) + "%";
+                        //     if (i + 1 == test1 * 7) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+                        // } else if (test1 * 8 > i) {
+                        //     var t1 = (240 - 206) / test1;
+                        //     k += t1;
+                        //     var t2 = (93 - 25) / test1
+                        //     j += t2;
+                        //     var t3 = (63 - 58) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (206 + k) + ", " + (93 - j) + "%," + (63 - z) + "%";
+                        //     if (i + 1 == test1 * 8) {
+                        //         k = 0;
+                        //         j = 0;
+                        //         z = 0;
+                        //     }
+                        // } else {
+                        //     var t1 = (240 - 215) / test1;
+                        //     k += t1;
+                        //     var t2 = (64 - 25) / test1
+                        //     j += t2;
+                        //     var t3 = (58 - 45) / test1
+                        //     z += t3;
+                        //     el.style.backgroundColor = "hsl(" + (240 - k) + ", " + (25 + j) + "%," + (58 - z) + "%";
+
+
+                        // }
+                    }
+                },
+                this.colors = function() {
+                    var oldH = 215;
+                    var oldS = 64;
+                    var oldB = 45;
+                    var that = this;
+
+                    function draw(el, h, s, b, i) {
+                        k += (h - oldH) / that.area;
+                        j += (s - oldS) / that.area;
+                        z += (b - oldB) / that.area;
+                        console.log(k);
+                        // console.log(k, j, z)
+                        el.style.backgroundColor = "hsl(" + (h + k) + ", " + (s + k) + "%," + (b + z) + "%";
+                        // 215 - 206   64 - 93  45 - 63
+                        // if (i + 1 >= that.area * 2) {
+                        //     oldH = h;
+                        //     oldS = s;
+                        //     oldB = b;
+                        //     k, j, z;
+                        // }
+                    }
+                    draw();
+                },
+                this.animationAuto = function() {
+                    that = this;
+                    this.auto = setInterval(function() {
+                        length = document.querySelectorAll('.stick');
+                        for (var k = 0; k < length.length; k++) {
+                            var ran = Math.floor(Math.random() * that.h) + 20;
+                            var item = length.item(k);
+                            item.style.height = ran + "px";
+
+                        }
+                    }, 800)
+
+                },
+                this.stop = function() {
+                    clearInterval(this.auto);
+                },
+                this.start = function() {
+                    this.animationAuto();
+                }
+            this.addEle();
+            this.animationAuto();
+
+        }
+        var play = new Animation();
+        $('.test1').off().on('click', function() {
+            var ran = Math.floor(Math.random() * 100) + 20;
+            play.height(ran);
+        })
+        $('.test2').off().on('click', function() {
+            play.stop();
+        })
+
+        $('.test3').off().on('click', function() {
+            play.start();
+        })
+    </script>
+</body>
+
+</html>
