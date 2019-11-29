@@ -1,0 +1,38 @@
+<html lang="ko">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+    <div>
+        <input type="text" class="input">
+        <button type="button" class="button">확인</button>
+    </div>
+    <script>
+        const input = document.querySelector('.input');
+        const button = document.querySelector('.button').onclick = () => {
+            let val = input.value
+            check(val);
+        }
+
+        function countCheck() {
+            const num = Math.floor(Math.random() * 100) + 1;
+            return function(count) {
+                count != num ? upDown(count) : alert("Good");
+            }
+
+            function upDown(n) {
+                input.focus();
+                input.value = "";
+                n > num ? console.log('down') : console.log('up');
+            }
+        }
+        const check = countCheck();
+    </script>
+</body>
+
+</html>
