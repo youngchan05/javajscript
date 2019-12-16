@@ -1,0 +1,40 @@
+<html lang="ko">
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <script>
+        const ideal = () => {
+            const setting = {
+                count : 32,
+                ary : [],
+                result : [],
+                random : function(n){
+                    this.ary.push(n);
+                    return n === 0 ? n : this.random(n - 1);
+                    
+                },
+                shuffle : function(){
+                    for(let i = 0; i < this.ary.length; i++){
+                        this.result.indexOf
+                        this.result.push(this.ary[i]);
+                        console.log(this.result);
+                    }
+                }
+            }
+            setting.random(setting.count);
+            setting.shuffle();
+        }
+        ideal();
+    </script>
+</body>
+
+</html>
