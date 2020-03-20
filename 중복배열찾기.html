@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="number">번호</p>
+    <script>
+        const shuffleNumber = () =>{
+            const ary = [];
+            for(let i = 0; i < 5; i++){
+                const randomNum = Math.floor(Math.random() * 5) +1;
+                let overlapNum = ary.find(item => {
+                    console.log(item);
+                    return item == randomNum;
+                })
+                overlapNum == randomNum ? i-- :  ary.push(randomNum);
+            }
+            document.querySelector('#number').innerHTML = ary;
+        }
+        shuffleNumber();
+    </script>
+</body>
+
+</html>

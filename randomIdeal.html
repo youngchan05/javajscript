@@ -15,22 +15,20 @@
         const ideal = () => {
             const setting = {
                 count : 32,
-                ary : [],
+                arr : [],
                 result : [],
-                random : function(n){
-                    this.ary.push(n);
-                    return n === 0 ? n : this.random(n - 1);
+                addArr : function(n){
+                    this.arr.push(n);
+                    n === 0 ? n : this.addArr(n - 1);
                     
                 },
                 shuffle : function(){
-                    for(let i = 0; i < this.ary.length; i++){
-                        this.result.indexOf
-                        this.result.push(this.ary[i]);
-                        console.log(this.result);
-                    }
+                    const _self = this;
+
+                    console.log(this.result);
                 }
             }
-            setting.random(setting.count);
+            setting.addArr(setting.count);
             setting.shuffle();
         }
         ideal();
